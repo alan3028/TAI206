@@ -1,0 +1,14 @@
+#Importaciones
+from fastapi import FastAPI
+
+#Inicializacion
+app = FastAPI()
+
+#Endpoints
+@app.get("/")
+async def holamundo():
+    return {"mensaje":" Hola mundo FastAPI"}
+
+@app.get("/bienvenido")
+async def bienvenido():
+    return {"mensaje":" bienvenido a tu  API REST"}
