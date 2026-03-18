@@ -9,15 +9,20 @@ import secrets
 
 #tiempo de espera de una peticion es de prueba 
 
+
+#crear citas 
+
+
 usuarios=[
-    {"id":1,"nombre":"axel","edad":21},
-    {"id":2,"nombre":"chola","edad":17},
-    {"id":3,"nombre":"cheyene","edad":90},
+    {"id":1,"cita":"","edad":21},
+    {"id":2,"cita":"chola","edad":17},
+    {"id":3,"cita":"cheyene","edad":90},
 ]
 #modelo de validacion pydantic
 class UsuarioBase(BaseModel):
     id :int =  Field(...,gt=0,description="identificador de usuario",example="1")
-    nombre : str = Field(...,min_length=3,max_length=50,description="Nombre del usuario",example="axel")
+    cita : str = Field(...,min_length=3,max_length=100,description="Descripción de la cita",example="Reunión con el paciente")
+    edad : int = Field(...,ge=0,gt=121,description="la edad de 0 a 121",example="21")
     edad : int = Field(...,ge=0,gt=121,description="la edad de 0 a 121",example="21")
     
     
@@ -40,7 +45,7 @@ def verificar_usuario(credentials: HTTPBasicCredentials = Depends(security)):
 #inicialiacion 
 app= FastAPI(
     title= 'mi primera api',
-    description='AxelGR',
+    description='santiago',
     version='1.0'
 )
 #mostramos ladescripcion de documentacion

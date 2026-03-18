@@ -9,12 +9,12 @@ FASTAPI_URL = "http://fastapi_app:5000/v1/usuarios/"
 # Mostrar tabla
 @app.route("/")
 def index():
-    response = requests.get(FASTAPI_URL)
+    response = request.get(FASTAPI_URL)
     data = response.json()
     usuarios = data["data"]
     return render_template("index.html", usuarios=usuarios)
 
-# Agregar usuario
+# Agregar citas
 @app.route("/agregar", methods=["POST"])
 def agregar():
     nuevo_usuario = {
@@ -22,13 +22,13 @@ def agregar():
         "nombre": request.form["nombre"],
         "edad": int(request.form["edad"])
     }
-    requests.post(FASTAPI_URL, json=nuevo_usuario)
+    request.post(FASTAPI_URL, json=nuevo_usuario)
     return redirect("/")
 
-# Eliminar usuario
+# Eliminar citas 
 @app.route("/eliminar/<int:id>")
 def eliminar(id):
-    requests.delete(FASTAPI_URL + str(id))
+    request.delete(FASTAPI_URL + str(id))
     return redirect("/")
 
 if __name__ == "__main__":
